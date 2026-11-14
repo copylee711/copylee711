@@ -21,11 +21,6 @@
   <img src="./assets/terminal.svg" width="88%" alt="about me"/>
 </p>
 
-- **Now** — building plugins for DeepSeek Harness: [computer use](https://github.com/copylee711/dsh-computer-use), [Office editing](https://github.com/copylee711/dsh-office), [remote control](https://github.com/copylee711/dsh-remote-control)
-- **Also** — [Super Knowledge Base](https://github.com/copylee711/Super-Knowledge-Base), a local-first knowledge base for AI agents (Tauri + Vue + Python)
-- **On Android** — [twinfile](https://github.com/copylee711/twinfile) and [syncboard](https://github.com/copylee711/syncboard), written in Kotlin
-- **Interested in** — AI agents, MCP, desktop automation, local-first software
-
 <img src="./assets/divider.svg" width="100%"/>
 
 ### Stack

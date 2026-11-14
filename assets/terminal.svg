@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 436" width="860" height="436" role="img" aria-label="about copylee711">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 550" width="860" height="550" role="img" aria-label="about copylee711">
   <style>
     .t { font-family: 'JetBrains Mono','Cascadia Code','SF Mono',Consolas,monospace; font-size: 17px; white-space: pre; }
     .cur { animation: blink 1s steps(1) infinite; }
     @keyframes blink { 50% { opacity: 0; } }
   </style>
-  <rect x=".5" y=".5" width="859" height="435" rx="12" fill="#1e2127" stroke="#ffffff" stroke-opacity=".1"/>
+  <rect x=".5" y=".5" width="859" height="549" rx="12" fill="#1e2127" stroke="#ffffff" stroke-opacity=".1"/>
   <path d="M.5 12.5a12 12 0 0 1 12-12h835a12 12 0 0 1 12 12v32H.5z" fill="#282c34"/>
   <line x1=".5" y1="44.5" x2="859.5" y2="44.5" stroke="#000" stroke-opacity=".35"/>
   <circle cx="24" cy="22" r="6.5" fill="#ff5f57"/><circle cx="46" cy="22" r="6.5" fill="#febc2e"/><circle cx="68" cy="22" r="6.5" fill="#28c840"/>
@@ -23,18 +23,25 @@
   <text x="32" y="210" class="t" fill="#abb2bf" opacity="0"><tspan fill="#abb2bf">{ </tspan><tspan fill="#e06c75">&quot;focus&quot;</tspan><tspan fill="#abb2bf">: [</tspan><tspan fill="#98c379">&quot;ai-agents&quot;</tspan><tspan fill="#abb2bf">, </tspan><tspan fill="#98c379">&quot;mcp&quot;</tspan><tspan fill="#abb2bf">, </tspan><tspan fill="#98c379">&quot;local-first&quot;</tspan><tspan fill="#abb2bf">, </tspan><tspan fill="#98c379">&quot;android&quot;</tspan><tspan fill="#abb2bf">] }</tspan><animate attributeName="opacity" from="0" to="1" begin="3.75s" dur="0.3s" fill="freeze"/></text>
   <g opacity="0"><set attributeName="opacity" to="1" begin="4.30s" fill="freeze"/>
     <text x="32" y="248" class="t" fill="#98c379">➜</text><text x="56.48" y="248" class="t" fill="#56b6c2" font-weight="700">~</text>
-    <clipPath id="c4"><rect x="78.91999999999999" y="226" height="30" width="0"><animate attributeName="width" values="2;12;22;33;43;53;63;73;84;94;104;114;124;135;145;155;165;175;186;196;206" calcMode="discrete" begin="4.60s" dur="1.10s" fill="freeze"/></rect></clipPath>
-    <text x="78.91999999999999" y="248" class="t" fill="#abb2bf" clip-path="url(#c4)"><tspan fill="#61afef">git </tspan><tspan fill="#abb2bf">log </tspan><tspan fill="#c678dd">--oneline </tspan><tspan fill="#d19a66">-1</tspan></text>
+    <clipPath id="c4"><rect x="78.91999999999999" y="226" height="30" width="0"><animate attributeName="width" values="2;12;22;33;43;53;63;73;84;94;104;114;124;135;145;155;165" calcMode="discrete" begin="4.60s" dur="0.88s" fill="freeze"/></rect></clipPath>
+    <text x="78.91999999999999" y="248" class="t" fill="#abb2bf" clip-path="url(#c4)"><tspan fill="#61afef">ls </tspan><tspan fill="#c678dd">-F </tspan><tspan fill="#e5c07b">~/projects</tspan></text>
   </g>
-  <text x="32" y="286" class="t" fill="#abb2bf" opacity="0"><tspan fill="#e5c07b">a1b2c3d </tspan><tspan fill="#e5c07b">(</tspan><tspan fill="#56b6c2">HEAD -&gt; </tspan><tspan fill="#98c379">main</tspan><tspan fill="#e5c07b">) </tspan><tspan fill="#abb2bf">feat(computer-use): let agents drive the desktop</tspan><animate attributeName="opacity" from="0" to="1" begin="5.95s" dur="0.3s" fill="freeze"/></text>
-  <g opacity="0"><set attributeName="opacity" to="1" begin="6.50s" fill="freeze"/>
-    <text x="32" y="324" class="t" fill="#98c379">➜</text><text x="56.48" y="324" class="t" fill="#56b6c2" font-weight="700">~</text>
-    <clipPath id="c6"><rect x="78.91999999999999" y="302" height="30" width="0"><animate attributeName="width" values="2;12;22;33;43;53;63;73;84;94;104;114" calcMode="discrete" begin="6.80s" dur="0.60s" fill="freeze"/></rect></clipPath>
-    <text x="78.91999999999999" y="324" class="t" fill="#abb2bf" clip-path="url(#c6)"><tspan fill="#61afef">echo </tspan><tspan fill="#e06c75">$MOTTO</tspan></text>
+  <text x="32" y="286" class="t" fill="#abb2bf" opacity="0"><tspan fill="#61afef">dsh-computer-use/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">dsh-office/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">dsh-remote-control/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">dsh-proxy/</tspan><animate attributeName="opacity" from="0" to="1" begin="5.73s" dur="0.3s" fill="freeze"/></text>
+  <text x="32" y="324" class="t" fill="#abb2bf" opacity="0"><tspan fill="#61afef">Super-Knowledge-Base/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">twinfile/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">syncboard/</tspan><tspan fill="#abb2bf">   </tspan><tspan fill="#61afef">homepage/</tspan><animate attributeName="opacity" from="0" to="1" begin="6.28s" dur="0.3s" fill="freeze"/></text>
+  <g opacity="0"><set attributeName="opacity" to="1" begin="6.83s" fill="freeze"/>
+    <text x="32" y="362" class="t" fill="#98c379">➜</text><text x="56.48" y="362" class="t" fill="#56b6c2" font-weight="700">~</text>
+    <clipPath id="c7"><rect x="78.91999999999999" y="340" height="30" width="0"><animate attributeName="width" values="2;12;22;33;43;53;63;73;84;94;104;114;124;135;145;155;165;175;186;196;206" calcMode="discrete" begin="7.13s" dur="1.10s" fill="freeze"/></rect></clipPath>
+    <text x="78.91999999999999" y="362" class="t" fill="#abb2bf" clip-path="url(#c7)"><tspan fill="#61afef">git </tspan><tspan fill="#abb2bf">log </tspan><tspan fill="#c678dd">--oneline </tspan><tspan fill="#d19a66">-1</tspan></text>
   </g>
-  <text x="32" y="362" class="t" fill="#abb2bf" opacity="0"><tspan fill="#98c379">Simple things, done well.</tspan><animate attributeName="opacity" from="0" to="1" begin="7.66s" dur="0.3s" fill="freeze"/></text>
-  <g opacity="0"><set attributeName="opacity" to="1" begin="8.21s" fill="freeze"/>
-    <text x="32" y="400" class="t" fill="#98c379">➜</text><text x="56.48" y="400" class="t" fill="#56b6c2" font-weight="700">~</text>
-    <rect class="cur" x="78.91999999999999" y="384" width="10" height="20" fill="#528bff"/>
+  <text x="32" y="400" class="t" fill="#abb2bf" opacity="0"><tspan fill="#e5c07b">a1b2c3d </tspan><tspan fill="#e5c07b">(</tspan><tspan fill="#56b6c2">HEAD -&gt; </tspan><tspan fill="#98c379">main</tspan><tspan fill="#e5c07b">) </tspan><tspan fill="#abb2bf">feat(computer-use): let agents drive the desktop</tspan><animate attributeName="opacity" from="0" to="1" begin="8.48s" dur="0.3s" fill="freeze"/></text>
+  <g opacity="0"><set attributeName="opacity" to="1" begin="9.03s" fill="freeze"/>
+    <text x="32" y="438" class="t" fill="#98c379">➜</text><text x="56.48" y="438" class="t" fill="#56b6c2" font-weight="700">~</text>
+    <clipPath id="c9"><rect x="78.91999999999999" y="416" height="30" width="0"><animate attributeName="width" values="2;12;22;33;43;53;63;73;84;94;104;114" calcMode="discrete" begin="9.33s" dur="0.60s" fill="freeze"/></rect></clipPath>
+    <text x="78.91999999999999" y="438" class="t" fill="#abb2bf" clip-path="url(#c9)"><tspan fill="#61afef">echo </tspan><tspan fill="#e06c75">$MOTTO</tspan></text>
+  </g>
+  <text x="32" y="476" class="t" fill="#abb2bf" opacity="0"><tspan fill="#98c379">Simple things, done well.</tspan><animate attributeName="opacity" from="0" to="1" begin="10.18s" dur="0.3s" fill="freeze"/></text>
+  <g opacity="0"><set attributeName="opacity" to="1" begin="10.73s" fill="freeze"/>
+    <text x="32" y="514" class="t" fill="#98c379">➜</text><text x="56.48" y="514" class="t" fill="#56b6c2" font-weight="700">~</text>
+    <rect class="cur" x="78.91999999999999" y="498" width="10" height="20" fill="#528bff"/>
   </g>
 </svg>
