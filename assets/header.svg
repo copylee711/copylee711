@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="copylee711">
+  <defs>
+    <radialGradient id="light" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#ffffff" fill-opacity=".07"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".75"/>
+    </radialGradient>
+    <!-- 文字上缓慢掠过的一道柔光 -->
+    <linearGradient id="sweep" gradientUnits="userSpaceOnUse" x1="-600" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#c9ccd2"/>
+      <stop offset=".44" stop-color="#c9ccd2"/>
+      <stop offset=".5" stop-color="#ffffff"/>
+      <stop offset=".56" stop-color="#c9ccd2"/>
+      <stop offset="1" stop-color="#c9ccd2"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0;1800 0;1800 0" keyTimes="0;.6;1" dur="7s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="card"><rect width="1200" height="340" rx="16"/></clipPath>
+  </defs>
+
+  <style>
+    .glow { animation: drift 16s ease-in-out infinite; }
+    @keyframes drift { 0%,100% { transform: translate(-180px, 0); } 50% { transform: translate(180px, 10px); } }
+
+    .title { font: 300 84px 'Helvetica Neue', 'Segoe UI Light', 'Segoe UI', Arial, sans-serif; letter-spacing: 14px;
+             opacity: 0; animation: fadeUp 1.6s cubic-bezier(.16,1,.3,1) .2s forwards; }
+    .eyebrow { font: 500 13px 'SF Mono', 'Cascadia Code', Consolas, monospace; letter-spacing: 6px; fill: #6e737b;
+               opacity: 0; animation: fade 1.4s ease .1s forwards; }
+    .sub { font: 400 15px 'SF Mono', 'Cascadia Code', Consolas, monospace; letter-spacing: 5px; fill: #8a9099;
+           opacity: 0; animation: fadeUp 1.6s cubic-bezier(.16,1,.3,1) .7s forwards; }
+    .meta { font: 400 12px 'SF Mono', 'Cascadia Code', Consolas, monospace; letter-spacing: 3px; fill: #4f545b;
+            opacity: 0; animation: fade 1.4s ease 1.2s forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fade { to { opacity: 1; } }
+
+    .rule { stroke-dasharray: 360; stroke-dashoffset: 360; animation: draw 1.8s cubic-bezier(.65,0,.35,1) .6s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    .pulse { animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+
+    .orbit { transform-box: view-box; transform-origin: 600px 170px; animation: spin 60s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .title, .eyebrow, .sub, .meta { opacity: 1; }
+      .rule { stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="340" fill="#0a0a0b"/>
+    <rect width="1200" height="340" fill="url(#dots)"/>
+    <ellipse class="glow" cx="600" cy="150" rx="420" ry="220" fill="url(#light)"/>
+
+    <!-- 极淡的同心轨道，缓慢旋转 -->
+    <g class="orbit" fill="none" stroke="#ffffff">
+      <ellipse cx="600" cy="170" rx="520" ry="520" stroke-opacity=".035"/>
+      <ellipse cx="600" cy="170" rx="380" ry="380" stroke-opacity=".045" stroke-dasharray="2 8"/>
+      <circle cx="980" cy="170" r="2" fill="#ffffff" fill-opacity=".5" stroke="none"/>
+    </g>
+
+    <rect width="1200" height="340" fill="url(#vignette)"/>
+
+    <text x="600" y="102" text-anchor="middle" class="eyebrow">— DEVELOPER · BUILDER —</text>
+    <text x="607" y="190" text-anchor="middle" class="title" fill="url(#sweep)">copylee711</text>
+    <line class="rule" x1="420" y1="222" x2="780" y2="222" stroke="url(#hair)" stroke-width="1"/>
+    <text x="600" y="258" text-anchor="middle" class="sub">CODE  ·  CRAFT  ·  CURIOSITY</text>
+
+    <g class="meta">
+      <circle class="pulse" cx="40" cy="306" r="3" fill="#9aa3ad"/>
+      <text x="54" y="310">AVAILABLE FOR COLLABORATION</text>
+      <text x="1160" y="310" text-anchor="end">EST. 2026</text>
+    </g>
+
+    <rect x=".5" y=".5" width="1199" height="339" rx="16" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+  </g>
+</svg>
