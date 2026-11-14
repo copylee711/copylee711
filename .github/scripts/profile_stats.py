@@ -1,6 +1,7 @@
 """Generate an animated GitHub stats card (SVG) for the profile README.
 
-Usage: GITHUB_TOKEN=... python profile_stats.py <username> <output.svg>
+Usage: GITHUB_TOKEN=... python profile_stats.py <username> <output_dir>
+Writes stats-dark.svg and stats-light.svg into <output_dir>.
 Only uses the standard library so it runs on a bare Actions runner.
 """
 import html
@@ -34,6 +35,11 @@ query($login: String!) {
 EXCLUDED_LANGS = {"HTML", "CSS", "SCSS", "Less", "Batchfile", "PowerShell", "Shell", "Dockerfile", "Makefile"}
 TOP_N = 6
 
+PALETTES = {
+    "dark": dict(bg="#0a0a0b", ink="#ffffff", head="#6e737b", num="#e4e6ea", lbl="#6e737b", lang="#c9ccd2", pct="#6e737b", other="#4a4d54"),
+    "light": dict(bg="#ffffff", ink="#000000", head="#8c959f", num="#1f2328", lbl="#8c959f", lang="#57606a", pct="#8c959f", other="#c4c9d0"),
+}
+
 
 def fetch(login: str, token: str) -> dict:
     req = urllib.request.Request(
@@ -63,7 +69,7 @@ def summarize(u: dict):
     top = [(n, v[0] / total, v[1]) for n, v in ranked[:TOP_N]]
     rest = 1 - sum(p for _, p, _ in top)
     if rest > 0.005:
-        top.append(("Other", rest, "#4a4d54"))
+        top.append(("Other", rest, None))
 
     metrics = [
         ("Stars Earned", sum(r["stargazerCount"] for r in repos)),
@@ -76,7 +82,7 @@ def summarize(u: dict):
     return metrics, top
 
 
-def render(metrics, langs) -> str:
+def render(metrics, langs, p: dict) -> str:
     W, H = 860, 230
     out = []
     # 左侧：3 列 x 2 行指标
@@ -93,9 +99,10 @@ def render(metrics, langs) -> str:
 
     # 右侧：语言堆叠条 + 图例
     bx, bw, by = 470, 354, 82
-    out.append(f'<rect x="{bx}" y="{by}" width="{bw}" height="8" rx="4" fill="#ffffff" fill-opacity=".06"/>')
+    out.append(f'<rect x="{bx}" y="{by}" width="{bw}" height="8" rx="4" fill="{p['ink']}" fill-opacity=".06"/>')
     out.append(f'<clipPath id="bar"><rect x="{bx}" y="{by}" width="{bw}" height="8" rx="4"/></clipPath><g clip-path="url(#bar)">')
     cx = bx
+    langs = [(n, pc, col or p["other"]) for n, pc, col in langs]
     for i, (name, pct, color) in enumerate(langs):
         w = bw * pct
         out.append(
@@ -117,36 +124,39 @@ def render(metrics, langs) -> str:
     body = "\n  ".join(out)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="GitHub stats">
   <style>
-    .h {{ font: 500 12px 'SF Mono','Cascadia Code',Consolas,monospace; letter-spacing: 4px; fill: #6e737b; }}
-    .num {{ font: 300 34px 'Helvetica Neue','Segoe UI Light','Segoe UI',Arial,sans-serif; fill: #e4e6ea; }}
-    .lbl {{ font: 500 10px 'SF Mono','Cascadia Code',Consolas,monospace; letter-spacing: 1.5px; fill: #6e737b; }}
-    .lang {{ font: 400 13px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill: #c9ccd2; }}
-    .pct {{ font: 400 12px 'SF Mono','Cascadia Code',Consolas,monospace; fill: #6e737b; }}
+    .h {{ font: 500 12px 'SF Mono','Cascadia Code',Consolas,monospace; letter-spacing: 4px; fill: {p['head']}; }}
+    .num {{ font: 300 34px 'Helvetica Neue','Segoe UI Light','Segoe UI',Arial,sans-serif; fill: {p['num']}; }}
+    .lbl {{ font: 500 10px 'SF Mono','Cascadia Code',Consolas,monospace; letter-spacing: 1.5px; fill: {p['lbl']}; }}
+    .lang {{ font: 400 13px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill: {p['lang']}; }}
+    .pct {{ font: 400 12px 'SF Mono','Cascadia Code',Consolas,monospace; fill: {p['pct']}; }}
     .up {{ opacity: 0; animation: up .9s cubic-bezier(.16,1,.3,1) forwards; }}
     @keyframes up {{ from {{ opacity: 0; transform: translateY(8px); }} to {{ opacity: 1; transform: none; }} }}
     .grow {{ transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow 1.1s cubic-bezier(.65,0,.35,1) forwards; }}
     @keyframes grow {{ to {{ transform: scaleX(1); }} }}
     @media (prefers-reduced-motion: reduce) {{ .up, .grow {{ animation: none; opacity: 1; transform: none; }} }}
   </style>
-  <rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="14" fill="#0a0a0b" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="14" fill="{p['bg']}" stroke="{p['ink']}" stroke-opacity=".08"/>
   <text x="36" y="44" class="h">GITHUB · STATS</text>
   <text x="470" y="44" class="h">LANGUAGES</text>
-  <line x1="436" y1="36" x2="436" y2="{H - 36}" stroke="#ffffff" stroke-opacity=".07"/>
+  <line x1="436" y1="36" x2="436" y2="{H - 36}" stroke="{p['ink']}" stroke-opacity=".07"/>
   {body}
 </svg>
 """
 
 
 def main():
-    login, out_path = sys.argv[1], sys.argv[2]
+    login, out_dir = sys.argv[1], sys.argv[2]
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if not token:
         raise SystemExit("GITHUB_TOKEN is required")
     metrics, langs = summarize(fetch(login, token))
-    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(render(metrics, langs))
-    print(f"wrote {out_path}: {metrics} {[(n, round(p, 3)) for n, p, _ in langs]}")
+    os.makedirs(out_dir, exist_ok=True)
+    for mode, palette in PALETTES.items():
+        path = os.path.join(out_dir, f"stats-{mode}.svg")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(render(metrics, langs, palette))
+        print("wrote", path)
+    print(metrics, [(n, round(p, 3)) for n, p, _ in langs])
 
 
 if __name__ == "__main__":

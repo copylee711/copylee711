@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Generate stats card
-        run: python .github/scripts/profile_stats.py "${{ github.repository_owner }}" dist/stats.svg
+        run: python .github/scripts/profile_stats.py "${{ github.repository_owner }}" dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
